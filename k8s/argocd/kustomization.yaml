@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: argocd
+
+resources:
+- namespace.yaml
+- github.com/argoproj/argo-cd/manifests/cluster-install?ref=stable
+
+# add this to /usr/local/bin/kustomize/kustomize_4.5.4
+# https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv4.5.4/kustomize_v4.5.4_linux_amd64.tar.gz
+
+patchesStrategicMerge:
+- argocd-cm.yaml
